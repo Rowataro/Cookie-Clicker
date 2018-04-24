@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/9.0.1" fx:controller="CookieClicker.PlayController">
+   <children>
+      <Label fx:id="cookie" layoutX="272.0" layoutY="172.0">
+         <graphic>
+            <Group>
+               <children>
+                  <Circle fill="#795811" radius="28.0" stroke="BLACK" strokeType="INSIDE">
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                  </Circle>
+                  <Circle layoutX="16.0" layoutY="-8.0" radius="8.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle layoutY="-16.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle layoutX="-14.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Circle layoutX="6.0" layoutY="14.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+                  <Button layoutX="-22.0" layoutY="-22.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="45.0" />
+               </children>
+            </Group>
+         </graphic>
+      </Label>
+   </children>
+</AnchorPane>
