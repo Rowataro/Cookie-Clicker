@@ -5,22 +5,14 @@
  */
 package CookieClicker;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.Group;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
@@ -31,49 +23,60 @@ import javafx.util.Duration;
  */
 public class PlayController implements Initializable 
 {
-    @FXML
-    AnchorPane anchorPane;
-    
-    @FXML
-    Label cookie;
+   
     /**
      * Initializes the controller class.
      */
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) 
     {
-        
+        updateCookie();
     }    
     
-    private void translateCookie(ActionEvent event) throws IOException
-    {
-        TranslateTransition transition = new TranslateTransition();
-        transition.setDuration(Duration.seconds(1));
-        transition.setNode(cookie);
+    @FXML
+    private void updateCookie()
+    {       
         
-        final Bounds bounds = anchorPane.getLayoutBounds();
+        ++totalClicks;
         
-        transition.setToY
-        (
-                getRandomValueFromTo
-                (
-                        (int)bounds.getMinY() + (int)cookie.getBoundsInParent().getHeight()/2,
-                        (int)bounds.getMaxY() - (int)cookie.getBoundsInParent().getHeight()/2
-                )
-        );
-        transition.setToX
-        (
-                getRandomValueFromTo
-                (
-                        (int)bounds.getMinX() + (int)cookie.getBoundsInParent().getHeight()/2,
-                        (int)bounds.getMaxX() - (int)cookie.getBoundsInParent().getHeight()/2
-                )
-        );
+        if(totalClicks <= 10)
+        {
+            System.out.println("Cookie clicked! Counter: " + totalClicks);
+        }
         
-        transition.setAutoReverse(true);
-        transition.setCycleCount(TranslateTransition.INDEFINITE);
-        transition.play();
+        Group[] cookies = {cookie1, cookie2, cookie3, cookie4, cookie5};
+        
+        for(int index = 0; index < cookies.length; ++index)
+        {
+            TranslateTransition transition = new TranslateTransition();
+            
+            if(totalClicks == 10)
+            {
+                System.out.println("Congratulations you won! Cookie Monster is proud of you.");
+                
+            }
+            
+            transition.setDuration(new Duration(500));
+            transition.setNode(cookies[index]);
+
+
+            transition.setToY
+            (
+                   getRandomValueFromTo(-200, 200)
+            );
+            transition.setToX
+            (
+                    getRandomValueFromTo(-200, 200)
+            );
+
+            transition.setAutoReverse(false);
+            transition.setCycleCount(TranslateTransition.INDEFINITE);
+
+            transition.play();
+        }
     }
+    
     private int getRandomValueFromTo(int max, int min)
     {
         if(min > max)
@@ -82,8 +85,31 @@ public class PlayController implements Initializable
             max = min;
             min = temp;
         }
-     
+
         Random rand = new Random(); 
         return rand.nextInt((max - min) + 1) + min;
     }
+    
+    @FXML
+    AnchorPane anchorPane;
+    
+    @FXML
+     Group cookie1;
+    
+    @FXML
+     Group cookie2;
+    
+    @FXML
+     Group cookie3;
+    
+    @FXML
+     Group cookie4;
+    
+    @FXML
+     Group cookie5;
+    
+    private int totalClicks = 10;
 }
+    
+    
+   

@@ -49,7 +49,7 @@ public class IntroController implements Initializable {
     public void changeToPlayWhenButtonPushed(ActionEvent event) throws IOException
     {
         Parent parent = FXMLLoader.load(getClass().getResource("Play.fxml"));
-        Scene scene = new Scene(parent);
+        Scene scene= new Scene(parent);
         
         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
         
